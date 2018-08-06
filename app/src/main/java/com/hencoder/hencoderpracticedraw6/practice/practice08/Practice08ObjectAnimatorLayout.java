@@ -1,8 +1,13 @@
 package com.hencoder.hencoderpracticedraw6.practice.practice08;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
@@ -34,10 +39,13 @@ public class Practice08ObjectAnimatorLayout extends RelativeLayout {
         animateBt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO 在这里处理点击事件，用 ObjectAnimator 播放动画
                 // 1. 用 ObjectAnimator 创建 Animator 对象
                 // 2. 用 start() 执行动画
                 // *. 记得在 Practice08ObjectAnimatorView 中为 progress 添加 setter/ getter 方法！
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, "progress", 0F, 100F);
+                animator.setDuration(1000);
+                animator.setInterpolator(new FastOutSlowInInterpolator());
+                animator.start();
             }
         });
     }

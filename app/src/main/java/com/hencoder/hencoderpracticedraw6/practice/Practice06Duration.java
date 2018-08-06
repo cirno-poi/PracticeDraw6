@@ -20,6 +20,8 @@ public class Practice06Duration extends LinearLayout {
 
     int duration = 300;
 
+    int clickCount = 0;
+
     public Practice06Duration(Context context) {
         super(context);
     }
@@ -64,7 +66,19 @@ public class Practice06Duration extends LinearLayout {
         animateBt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO 在这里处理点击事件，执行动画。记得使用 `setDuration(duration)` 来设置动画的时长。
+                switch (clickCount) {
+                    case 0:
+                        imageView.animate().translationX(500);
+                        imageView.animate().setDuration(duration);
+                        break;
+                    case 1:
+                        imageView.animate().translationX(0);
+                        imageView.animate().setDuration(duration);
+                        break;
+                    default:
+                        break;
+                }
+                clickCount = (clickCount + 1) % 2;
             }
         });
     }
